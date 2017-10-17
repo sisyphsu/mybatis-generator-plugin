@@ -3,11 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
     <groupId>com.wuage</groupId>
     <artifactId>mybatis-generator-plugin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
+    <name>mybatis-generator-plugin</name>
+    <description>A plugin for myBatis generator</description>
+    <url>https://github.com/sisyphsu/mybatis-generator-plugin</url>
     
     <dependencies>
         <dependency>
@@ -17,11 +20,88 @@
         </dependency>
     </dependencies>
     
+    <distributionManagement>
+        <snapshotRepository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    
+    <issueManagement>
+        <system>Github Issue</system>
+        <url>https://github.com/sisyphsu/mybatis-generator-plugin/issues</url>
+    </issueManagement>
+    
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/sisyphsu/mybatis-generator-plugin/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>sulin</name>
+            <email>sulinixl@gmail.com</email>
+        </developer>
+    </developers>
+    
+    <scm>
+        <connection>scm:git@github.com:sisyphsu/mybatis-generator-plugin.git</connection>
+        <developerConnection>scm:git@github.com:sisyphsu/mybatis-generator-plugin.git</developerConnection>
+        <url>git@github.com:sisyphsu/mybatis-generator-plugin.git</url>
+    </scm>
+    
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
